@@ -1,0 +1,95 @@
+@Metadata.layer: #CORE
+@UI: { 
+headerInfo: {
+typeName: 'Usage Decision',
+typeNamePlural: 'Usage Decision',
+title: { type: #STANDARD, label: 'Usage Decision'
+} 
+
+} }
+
+annotate view zcons_label_master
+    with 
+{
+@UI.facet: [
+
+//////////////////////header
+
+ { id: 'date' ,
+             purpose: #HEADER,
+             label: 'Lot Status:' ,
+             type: #FIELDGROUP_REFERENCE,
+             targetQualifier: 'date'
+
+             
+             } ,
+
+
+/////////////////
+
+
+{ id: 'Quarantine_Label',
+//purpose: #STANDARD,
+type: #COLLECTION,
+label: 'Inspection Lot Details',
+//parentId: 'Quarantine_Label',
+position: 10  },
+
+{ type: #IDENTIFICATION_REFERENCE ,
+          //  label : 'Inspection Lot Details',
+             parentId: 'Quarantine_Label',
+             id: 'Quarantine_Label' 
+ },
+{ type: #FIELDGROUP_REFERENCE ,
+            label : 'Material Details:',
+             targetQualifier: 'mat' ,
+             parentId: 'Quarantine_Label' ,
+             id : 'idchange' ,
+            position: 10 }          
+]
+
+////////////////////group1    
+@UI:{ lineItem: [ { position: 10 } ],
+identification: [ {position: 10  } ],
+selectionField: [{ position: 10 }]
+}  
+@UI.fieldGroup: [{ qualifier: 'date' , position: 10 }]
+grn;
+
+@UI:{ lineItem: [ { position: 20 } ],
+identification: [ {position: 20  } ],
+selectionField: [{ position: 20 }]
+}   
+@UI.fieldGroup: [{ qualifier: 'date' , position: 20 }]
+year1;
+
+@UI:{ 
+lineItem: [
+{position: 30 } ,
+// value: 'status' , criticality: 'status1' },
+{ type: #FOR_ACTION, dataAction: 'approve', position: 1,
+label: 'Approve' },
+{ type: #FOR_ACTION, dataAction: 'reject', position: 0,
+label: 'Reject' }
+],
+identification: [
+{position: 30 },
+{ type: #FOR_ACTION, dataAction: 'approve', position: 1,
+label: 'Approve' },
+{ type: #FOR_ACTION, dataAction: 'reject', position: 0,
+label: 'Reject' }
+],
+selectionField: [{ position: 30 }]
+}
+
+/////////////Group2
+
+
+@UI.fieldGroup: [{ qualifier: 'mat' , position: 10 }] 
+matnr;
+
+@UI.fieldGroup: [{ qualifier: 'mat' , position: 20}]  
+desc1;
+
+
+}

@@ -1,0 +1,24 @@
+managed implementation in class zbp_cds_label_master_ud unique;
+//strict; //Comment this line in to enable strict mode. The strict mode is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for Zcds_Label_Master_UD //alias <alias_name>
+persistent table ZLABEL_MASTER
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+//  create;
+//update;
+//  delete;
+
+ action approve result [1] $self;
+ action reject result [1] $self;
+
+
+ mapping for ZLABEL_MASTER
+{
+grn = mblnr;
+year1 = mjahr;
+
+}
+}
